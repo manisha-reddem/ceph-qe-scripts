@@ -188,7 +188,7 @@ def test_exec(config, ssh_con):
                 exit(str(e))
             log.info("trying to restart rgw services ")
             srv_restarted = rgw_service.restart(ssh_con)
-            time.sleep(10)
+            time.sleep(30)
             if srv_restarted is False:
                 raise TestExecError("RGW service restart failed")
             else:
@@ -917,7 +917,7 @@ def test_exec(config, ssh_con):
             )
             out = utils.exec_shell_cmd(cmd)
             srv_restarted = rgw_service.restart(ssh_con)
-            time.sleep(10)
+            time.sleep(30)
             if srv_restarted is False:
                 raise TestExecError("RGW service restart failed")
             else:

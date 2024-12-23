@@ -47,11 +47,14 @@ def resource_op(exec_info):
         ):
             if "args" in exec_info:
                 log.info("in args")
+                log.info(exec_info)
                 log.info("args_val: %s" % exec_info["args"])
                 if exec_info["args"] is not None:
                     result = getattr(obj, resource)(*tuple(exec_info["args"]))
                 else:
                     result = getattr(obj, resource)()
+                log.info("Result")
+                log.info(result)
             if "kwargs" in exec_info:
                 if exec_info["kwargs"] is not None:
                     log.info("in kwargs")

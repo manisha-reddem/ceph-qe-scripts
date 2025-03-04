@@ -89,6 +89,7 @@ def check_ceph_status():
     """
     log.info("get ceph status")
     ceph_status = utils.exec_shell_cmd(cmd="sudo ceph status")
+    log.info(f"ceph status is : {ceph_status}")
     if "HEALTH_ERR" in ceph_status or "large omap objects" in ceph_status:
         raise Exception(
             "ceph status is either in HEALTH_ERR or we have large omap objects."

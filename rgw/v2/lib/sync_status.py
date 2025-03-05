@@ -88,11 +88,7 @@ def check_ceph_status():
     get the ceph cluster status and health
     """
     log.info("get ceph status")
-    log.info("***************")
-    log.info(utils.exec_shell_cmd(cmd="sudo ceph status"))
-    log.info("***************")
     ceph_status = utils.exec_shell_cmd(cmd="sudo ceph status")
-    log.info(f"ceph status is : {ceph_status}")
     if "HEALTH_ERR" in ceph_status or "large omap objects" in ceph_status:
         raise Exception(
             "ceph status is either in HEALTH_ERR or we have large omap objects."

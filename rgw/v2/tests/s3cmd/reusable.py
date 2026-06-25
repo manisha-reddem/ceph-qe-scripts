@@ -529,6 +529,12 @@ def remote_zone_bucket_stats(bucket_name, config):
     cmd_bucket_stats = f"radosgw-admin bucket stats --bucket {bucket_name}"
     stdin, stdout, stderr = remote_site_ssh_con.exec_command(cmd_bucket_stats)
     cmd_output = stdout.read().decode()
+    err_output = stderr.read().decode().strip()
+
+    if err_output:
+        log.error(f"Bucket stats command failed: {err_output}")
+        raise Exception(err_output)
+
     stats_remote = json.loads(cmd_output)
     log.info(
         f"bucket stats at remote site {zone_name} for {bucket_name} is {stats_remote}"
